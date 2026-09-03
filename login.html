@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Market — เข้าสู่ระบบ / สมัครสมาชิก</title>
+  <meta name="description" content="เข้าสู่ระบบตลาดออนไลน์ภายในวิทยาลัย สำหรับนักเรียนและบุคลากร">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body class="auth-body">
+
+  <!-- Animated Background -->
+  <div class="auth-bg">
+    <div class="auth-bg-blob blob1"></div>
+    <div class="auth-bg-blob blob2"></div>
+    <div class="auth-bg-blob blob3"></div>
+    <div class="auth-bg-grid"></div>
+  </div>
+
+  <!-- Auth Container -->
+  <div class="auth-wrapper">
+
+    <!-- Left Panel — Branding -->
+    <div class="auth-left-panel">
+      <div class="auth-brand">
+        <div class="auth-brand-icon">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <h1 class="auth-brand-name">College<span>Market</span></h1>
+        <p class="auth-brand-tagline">ตลาดออนไลน์ภายในวิทยาลัย</p>
+      </div>
+
+      <div class="auth-features">
+        <div class="auth-feature-item">
+          <div class="auth-feature-icon">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <div>
+            <h4>ปลอดภัย 100%</h4>
+            <p>ซื้อขายในระบบปิด เฉพาะนักเรียน-บุคลากรในวิทยาลัย</p>
+          </div>
+        </div>
+        <div class="auth-feature-item">
+          <div class="auth-feature-icon">
+            <i class="fa-solid fa-tag"></i>
+          </div>
+          <div>
+            <h4>ราคาเป็นมิตร</h4>
+            <p>ซื้อขายสินค้าราคาถูกระหว่างเพื่อนร่วมวิทยาลัย</p>
+          </div>
+        </div>
+        <div class="auth-feature-item">
+          <div class="auth-feature-icon">
+            <i class="fa-solid fa-handshake"></i>
+          </div>
+          <div>
+            <h4>ไว้วางใจได้</h4>
+            <p>ผู้ขายทุกรายเป็นสมาชิกที่ผ่านการยืนยันตัวตน</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="auth-stats">
+        <div class="auth-stat">
+          <span class="auth-stat-num">1,200+</span>
+          <span class="auth-stat-label">สมาชิก</span>
+        </div>
+        <div class="auth-stat-divider"></div>
+        <div class="auth-stat">
+          <span class="auth-stat-num">500+</span>
+          <span class="auth-stat-label">สินค้า</span>
+        </div>
+        <div class="auth-stat-divider"></div>
+        <div class="auth-stat">
+          <span class="auth-stat-num">98%</span>
+          <span class="auth-stat-label">พึงพอใจ</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Panel — Form -->
+    <div class="auth-right-panel">
+      <div class="auth-card">
+
+        <!-- Tab Switcher -->
+        <div class="auth-tabs">
+          <button class="auth-tab active" id="loginTabBtn" onclick="switchTab('login')">
+            <i class="fa-solid fa-right-to-bracket"></i> เข้าสู่ระบบ
+          </button>
+          <button class="auth-tab" id="registerTabBtn" onclick="switchTab('register')">
+            <i class="fa-solid fa-user-plus"></i> สมัครสมาชิก
+          </button>
+        </div>
+
+        <!-- Login Form -->
+        <div id="loginSection">
+          <div class="auth-form-header">
+            <h2>ยินดีต้อนรับกลับ! 👋</h2>
+            <p>เข้าสู่ระบบเพื่อเริ่มช้อปปิ้งและลงขายสินค้า</p>
+          </div>
+
+          <form id="loginForm" onsubmit="handleLogin(event)">
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fa-solid fa-user-tag"></i> ประเภทสมาชิก
+              </label>
+              <div class="role-selector">
+                <label class="role-option">
+                  <input type="radio" name="loginRole" value="student" checked>
+                  <div class="role-card">
+                    <i class="fa-solid fa-user-graduate"></i>
+                    <span>นักเรียน</span>
+                  </div>
+                </label>
+                <label class="role-option">
+                  <input type="radio" name="loginRole" value="teacher">
+                  <div class="role-card">
+                    <i class="fa-solid fa-chalkboard-teacher"></i>
+                    <span>ครู/บุคลากร</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="loginUsername">
+                <i class="fa-solid fa-id-badge"></i> รหัสนักเรียน / รหัสประจำตัว
+              </label>
+              <div class="input-icon-wrap">
+                <i class="fa-solid fa-id-badge input-icon"></i>
+                <input type="text" id="loginUsername" class="form-input" 
+                  placeholder="เช่น 66001234 หรือ T001" required autocomplete="username">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="loginPassword">
+                <i class="fa-solid fa-lock"></i> รหัสผ่าน
+              </label>
+              <div class="input-icon-wrap">
+                <i class="fa-solid fa-key input-icon"></i>
+                <input type="password" id="loginPassword" class="form-input" 
+                  placeholder="รหัสผ่านของคุณ" required autocomplete="current-password">
+                <button type="button" class="toggle-password" onclick="togglePassword('loginPassword', 'loginPasswordEye')">
+                  <i class="fa-regular fa-eye" id="loginPasswordEye"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="auth-remember-row">
+              <label class="custom-checkbox-label" style="font-size: 0.85rem;">
+                <input type="checkbox" id="rememberMe">
+                <span>จดจำฉันไว้</span>
+              </label>
+              <a href="javascript:void(0)" class="auth-link">ลืมรหัสผ่าน?</a>
+            </div>
+
+            <div class="auth-error" id="loginError" style="display:none;">
+              <i class="fa-solid fa-circle-exclamation"></i>
+              <span id="loginErrorMsg">รหัสผู้ใช้หรือรหัสผ่านไม่ถูกต้อง</span>
+            </div>
+
+            <button type="submit" class="auth-submit-btn" id="loginSubmitBtn">
+              <span id="loginBtnText"><i class="fa-solid fa-right-to-bracket"></i> เข้าสู่ระบบ</span>
+              <span id="loginBtnLoading" style="display:none;"><i class="fa-solid fa-spinner fa-spin"></i> กำลังตรวจสอบ...</span>
+            </button>
+
+            <div class="auth-divider"><span>หรือ</span></div>
+
+            <div class="auth-demo-accounts">
+              <p class="demo-label"><i class="fa-solid fa-flask"></i> ทดลองใช้ด้วยบัญชีตัวอย่าง</p>
+              <div class="demo-btns">
+                <button type="button" class="demo-btn" onclick="fillDemo('student')">
+                  <i class="fa-solid fa-user-graduate"></i> นักเรียน Demo
+                </button>
+                <button type="button" class="demo-btn" onclick="fillDemo('teacher')">
+                  <i class="fa-solid fa-chalkboard-teacher"></i> ครู Demo
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Register Form -->
+        <div id="registerSection" style="display:none;">
+          <div class="auth-form-header">
+            <h2>สมัครสมาชิกใหม่ 🎓</h2>
+            <p>เปิดบัญชีเพื่อซื้อขายสินค้าภายในวิทยาลัย</p>
+          </div>
+
+          <form id="registerForm" onsubmit="handleRegister(event)">
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fa-solid fa-user-tag"></i> ประเภทสมาชิก
+              </label>
+              <div class="role-selector">
+                <label class="role-option">
+                  <input type="radio" name="registerRole" value="student" checked>
+                  <div class="role-card">
+                    <i class="fa-solid fa-user-graduate"></i>
+                    <span>นักเรียน</span>
+                  </div>
+                </label>
+                <label class="role-option">
+                  <input type="radio" name="registerRole" value="teacher">
+                  <div class="role-card">
+                    <i class="fa-solid fa-chalkboard-teacher"></i>
+                    <span>ครู/บุคลากร</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label" for="regFirstName">
+                  ชื่อ <span style="color:#ef4444;">*</span>
+                </label>
+                <input type="text" id="regFirstName" class="form-input" placeholder="ชื่อจริง" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="regLastName">
+                  นามสกุล <span style="color:#ef4444;">*</span>
+                </label>
+                <input type="text" id="regLastName" class="form-input" placeholder="นามสกุล" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="regUsername">
+                <i class="fa-solid fa-id-badge"></i> รหัสนักเรียน / รหัสประจำตัว <span style="color:#ef4444;">*</span>
+              </label>
+              <div class="input-icon-wrap">
+                <i class="fa-solid fa-id-badge input-icon"></i>
+                <input type="text" id="regUsername" class="form-input" 
+                  placeholder="เช่น 66001234 หรือ T001" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="regDept">
+                <i class="fa-solid fa-school"></i> แผนก / สาขาวิชา
+              </label>
+              <select id="regDept" class="form-select">
+                <option value="">— เลือกแผนก —</option>
+                <option>ช่างยนต์</option>
+                <option>ช่างไฟฟ้า</option>
+                <option>ช่างอิเล็กทรอนิกส์</option>
+                <option>ช่างกลโรงงาน</option>
+                <option>คอมพิวเตอร์ธุรกิจ</option>
+                <option>การบัญชี</option>
+                <option>การตลาด</option>
+                <option>เทคโนโลยีสารสนเทศ</option>
+                <option>บุคลากร/ครูผู้สอน</option>
+                <option>อื่นๆ</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="regPhone">
+                <i class="fa-solid fa-mobile-screen"></i> เบอร์โทรศัพท์
+              </label>
+              <input type="tel" id="regPhone" class="form-input" placeholder="08X-XXX-XXXX">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="regPassword">
+                <i class="fa-solid fa-lock"></i> รหัสผ่าน <span style="color:#ef4444;">*</span>
+              </label>
+              <div class="input-icon-wrap">
+                <i class="fa-solid fa-key input-icon"></i>
+                <input type="password" id="regPassword" class="form-input" 
+                  placeholder="อย่างน้อย 6 ตัวอักษร" required minlength="6"
+                  oninput="checkPasswordStrength(this.value)">
+                <button type="button" class="toggle-password" onclick="togglePassword('regPassword', 'regPasswordEye')">
+                  <i class="fa-regular fa-eye" id="regPasswordEye"></i>
+                </button>
+              </div>
+              <div class="pw-strength-bar" id="pwStrengthBar">
+                <div class="pw-strength-fill" id="pwStrengthFill"></div>
+              </div>
+              <div class="pw-strength-label" id="pwStrengthLabel"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="regConfirmPassword">
+                <i class="fa-solid fa-lock"></i> ยืนยันรหัสผ่าน <span style="color:#ef4444;">*</span>
+              </label>
+              <div class="input-icon-wrap">
+                <i class="fa-solid fa-key input-icon"></i>
+                <input type="password" id="regConfirmPassword" class="form-input" 
+                  placeholder="พิมพ์รหัสผ่านอีกครั้ง" required>
+              </div>
+            </div>
+
+            <label class="custom-checkbox-label" style="font-size: 0.85rem; margin-bottom: 1.25rem;">
+              <input type="checkbox" id="agreeTerms" required>
+              <span>ฉันยอมรับ <a href="javascript:void(0)" class="auth-link">เงื่อนไขการใช้งาน</a> และ <a href="javascript:void(0)" class="auth-link">นโยบายความเป็นส่วนตัว</a></span>
+            </label>
+
+            <div class="auth-error" id="registerError" style="display:none;">
+              <i class="fa-solid fa-circle-exclamation"></i>
+              <span id="registerErrorMsg"></span>
+            </div>
+
+            <button type="submit" class="auth-submit-btn" id="registerSubmitBtn">
+              <span id="registerBtnText"><i class="fa-solid fa-user-plus"></i> สมัครสมาชิกเลย</span>
+              <span id="registerBtnLoading" style="display:none;"><i class="fa-solid fa-spinner fa-spin"></i> กำลังบันทึก...</span>
+            </button>
+          </form>
+        </div>
+
+        <div class="auth-card-footer">
+          <p>© 2026 College Market · ระบบตลาดออนไลน์ภายในวิทยาลัย</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="auth-theme-toggle" id="authThemeBtn" onclick="toggleAuthTheme()" title="เปลี่ยนธีม">
+    <i class="fa-solid fa-moon" id="authThemeIcon"></i>
+  </button>
+
+  <script src="js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Market — ตลาดออนไลน์ภายในวิทยาลัย</title>
+  <meta name="description" content="ตลาดออนไลน์ภายในวิทยาลัย ซื้อขายสินค้าระหว่างนักเรียนและบุคลากร ปลอดภัย โปร่งใส ราคาเป็นมิตร">
+  
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Auth CSS (for shared variables) -->
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <aside class="top-bar" aria-label="Announcement">
+    <div class="container top-bar-inner">
+      <div>
+        <span>🎓 ยินดีต้อนรับสู่ <b>College Market</b> — ตลาดออนไลน์ภายในวิทยาลัย! กรอกโค้ด <b>WELCOME10</b> รับส่วนลด 10%</span>
+      </div>
+      <div class="top-bar-links">
+        <a href="javascript:void(0)" id="topSellerBtn"><i class="fa-solid fa-store"></i> ลงขายสินค้า</a>
+        <a href="javascript:void(0)" id="topOrderBtn"><i class="fa-solid fa-truck-fast"></i> ติดตามพัสดุ</a>
+        <a href="javascript:void(0)" id="helpBtn"><i class="fa-regular fa-circle-question"></i> ช่วยเหลือ</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Sticky Main Header -->
+  <header class="main-header">
+    <div class="container header-inner">
+      <!-- Logo -->
+      <a href="index.html" class="logo" id="logoBtn">
+        <div class="logo-icon">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <div>College<span>Market</span></div>
+      </a>
+
+      <!-- Real-time Search Box -->
+      <div class="search-box-container">
+        <div class="search-box">
+          <input type="text" id="searchInput" placeholder="ค้นหาสินค้า เช่น หูฟัง, เสื้อผ้า, ทุเรียน, ของแต่งบ้าน..." autocomplete="off">
+          <button type="button" class="search-submit-btn" id="searchBtn" aria-label="ค้นหา">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <!-- Open Seller Hub -->
+        <button class="seller-hub-btn" id="openSellerModalBtn" title="ลงขายสินค้า">
+          <i class="fa-solid fa-plus-circle"></i>
+          <span>ลงขายสินค้า</span>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button class="icon-btn" id="themeToggleBtn" title="เปลี่ยนโหมดมืด/สว่าง" aria-label="เปลี่ยนธีม">
+          <i class="fa-solid fa-moon" id="themeIcon"></i>
+        </button>
+
+        <!-- Order History -->
+        <button class="icon-btn" id="openOrdersBtn" title="ประวัติการสั่งซื้อ" aria-label="ประวัติคำสั่งซื้อ">
+          <i class="fa-solid fa-receipt"></i>
+          <span class="icon-badge" id="orderCountBadge" style="display: none;">0</span>
+        </button>
+
+        <!-- Wishlist -->
+        <button class="icon-btn" id="openWishlistBtn" title="รายการที่ถูกใจ" aria-label="รายการโปรด">
+          <i class="fa-regular fa-heart"></i>
+          <span class="icon-badge" id="wishlistCountBadge">0</span>
+        </button>
+
+        <!-- Cart Trigger -->
+        <button class="icon-btn" id="openCartBtn" title="ตะกร้าสินค้า" aria-label="ตะกร้าสินค้า">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="icon-badge" id="cartCountBadge">0</span>
+        </button>
+
+        <!-- User Profile -->
+        <button class="icon-btn user-profile-btn" id="openUserProfileBtn" title="โปรไฟล์ของฉัน" aria-label="โปรไฟล์">
+          <div class="user-avatar-mini" id="userAvatarMini">?</div>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="hero-grid">
+          <!-- Main Hero Banner -->
+          <div class="hero-banner-main">
+            <div class="hero-banner-bg-shape"></div>
+            <div class="hero-banner-bg-glow"></div>
+            <div class="hero-tag">
+              <i class="fa-solid fa-graduation-cap"></i> College Market — ตลาดออนไลน์ภายในวิทยาลัย
+            </div>
+            <h1 class="hero-title">ซื้อ-ขายสินค้า ระหว่างเพื่อนร่วมวิทยาลัย ปลอดภัย ราคาถูก</h1>
+            <p class="hero-desc">ตลาดออนไลน์ในระบบปิดเฉพาะนักเรียน-บุคลากร ซื้อขายสะดวก ปลอดภัย ผู้ขายทุกรายผ่านการยืนยันตัวตน</p>
+            <div class="hero-actions">
+              <a href="#marketplaceSection" class="btn-primary">
+                <i class="fa-solid fa-bag-shopping"></i> ช้อปเลยตอนนี้
+              </a>
+              <button class="btn-secondary" id="heroSellerCtaBtn">
+                <i class="fa-solid fa-shop"></i> เปิดร้านค้าฟรี
+              </button>
+            </div>
+          </div>
+
+          <!-- Side Perks -->
+          <div class="hero-side-banners">
+            <div class="side-banner-card highlight">
+              <div>
+                <h4>ส่งฟรีทั่วไทย 🚚</h4>
+                <p>เมื่อช้อปครบ 500 บาทขึ้นไป</p>
+              </div>
+              <div class="side-banner-icon">
+                <i class="fa-solid fa-truck-fast"></i>
+              </div>
+            </div>
+
+            <div class="side-banner-card">
+              <div>
+                <h4>การันตีของแท้ 100% 🛡️</h4>
+                <p>คืนเงินเต็มจำนวนหากไม่พอใจ</p>
+              </div>
+              <div class="side-banner-icon">
+                <i class="fa-solid fa-shield-halved"></i>
+              </div>
+            </div>
+
+            <div class="side-banner-card">
+              <div>
+                <h4>PromptPay & บัตรเครดิต 💳</h4>
+                <p>ชำระเงินสะดวก ปลอดภัย 24 ชม.</p>
+              </div>
+              <div class="side-banner-icon">
+                <i class="fa-solid fa-qrcode"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Flash Sale Section -->
+      <section class="flash-sale-section">
+        <div class="flash-sale-container">
+          <div class="flash-sale-header">
+            <div class="flash-title-wrap">
+              <i class="fa-solid fa-fire"></i>
+              <h2>FLASH SALE สินค้าราคาพิเศษ</h2>
+            </div>
+            <div class="timer-box">
+              <span>สิ้นสุดใน:</span>
+              <span class="time-digit" id="timerHours">04</span>
+              <span class="time-sep">:</span>
+              <span class="time-digit" id="timerMinutes">28</span>
+              <span class="time-sep">:</span>
+              <span class="time-digit" id="timerSeconds">50</span>
+            </div>
+          </div>
+
+          <!-- Flash Sale Items Slider Grid -->
+          <div class="flash-sale-slider" id="flashSaleContainer">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Category Filter Navigation Bar -->
+      <section class="categories-section">
+        <div class="section-title-wrap">
+          <h2 class="section-title">
+            <i class="fa-solid fa-layer-group"></i> หมวดหมู่สินค้า
+          </h2>
+        </div>
+        <div class="category-pills" id="categoriesContainer">
+          <!-- Rendered by JS -->
+        </div>
+      </section>
+
+      <!-- Main Marketplace Grid & Filters -->
+      <section class="marketplace-layout" id="marketplaceSection">
+        
+        <!-- Filters Sidebar -->
+        <aside class="filters-sidebar">
+          <div class="filter-header">
+            <h3><i class="fa-solid fa-sliders"></i> กรองสินค้า</h3>
+            <button class="reset-filter-btn" id="resetFilterBtn">ล้างตัวกรอง</button>
+          </div>
+
+          <!-- Price Range Filter -->
+          <div class="filter-group">
+            <div class="filter-group-title">ช่วงราคา (บาท)</div>
+            <div class="price-range-inputs">
+              <input type="number" id="minPriceInput" class="price-input-box" placeholder="ต่ำสุด" min="0" value="0">
+              <span>-</span>
+              <input type="number" id="maxPriceInput" class="price-input-box" placeholder="สูงสุด" min="0" value="40000">
+            </div>
+            <input type="range" id="priceRangeSlider" class="price-slider" min="100" max="40000" step="100" value="40000">
+          </div>
+
+          <!-- Ratings Filter -->
+          <div class="filter-group">
+            <div class="filter-group-title">คะแนนความพึงพอใจ</div>
+            <label class="custom-checkbox-label">
+              <input type="radio" name="ratingFilter" value="0" checked>
+              <span>ทั้งหมด</span>
+            </label>
+            <label class="custom-checkbox-label">
+              <input type="radio" name="ratingFilter" value="4.8">
+              <span class="filter-rating-stars">★★★★★</span>
+              <span>4.8 ดาวขึ้นไป</span>
+            </label>
+            <label class="custom-checkbox-label">
+              <input type="radio" name="ratingFilter" value="4.5">
+              <span class="filter-rating-stars">★★★★☆</span>
+              <span>4.5 ดาวขึ้นไป</span>
+            </label>
+          </div>
+
+          <!-- Feature Badges Filter -->
+          <div class="filter-group">
+            <div class="filter-group-title">บริการพิเศษ</div>
+            <label class="custom-checkbox-label">
+              <input type="checkbox" id="filterFreeShipping">
+              <span><i class="fa-solid fa-truck-fast text-info"></i> ส่งฟรีทั่วไทย</span>
+            </label>
+            <label class="custom-checkbox-label">
+              <input type="checkbox" id="filterFlashSale">
+              <span><i class="fa-solid fa-fire text-danger"></i> ดีลลดพิเศษ</span>
+            </label>
+          </div>
+
+          <!-- Seller Status Banner -->
+          <div style="background: var(--bg-card-subtle); padding: 1rem; border-radius: var(--radius-md); text-align: center; border: 1px dashed var(--border-color); margin-top: 1rem;">
+            <p style="font-size: 0.82rem; font-weight: 600; margin-bottom: 0.5rem;">อยากขายสินค้าบ้าง?</p>
+            <button class="btn-primary" id="sidebarSellerBtn" style="font-size: 0.78rem; padding: 0.45rem 0.85rem; width: 100%; justify-content: center;">
+              <i class="fa-solid fa-store"></i> ลงขายสินค้าฟรี
+            </button>
+          </div>
+        </aside>
+
+        <!-- Product Listing Area -->
+        <div class="products-area">
+          <div class="products-top-bar">
+            <div class="products-count">
+              แสดงสินค้าทั้งหมด <b id="productCountNum">0</b> รายการ ในหมวด <span id="currentCategoryLabel" style="font-weight: 700; color: var(--primary);">ทั้งหมด</span>
+            </div>
+            <div class="sort-container">
+              <label for="sortSelect">เรียงตาม:</label>
+              <select id="sortSelect" class="sort-select">
+                <option value="popular">ยอดนิยม & ขายดี</option>
+                <option value="price-asc">ราคา: ต่ำไปสูง</option>
+                <option value="price-desc">ราคา: สูงไปต่ำ</option>
+                <option value="rating">คะแนนรีวิวสูงสุด</option>
+                <option value="discount">ส่วนลดมากที่สุด</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Products Grid Container -->
+          <div class="products-grid" id="productsGridContainer">
+            <!-- Product Cards rendered dynamically via JS -->
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ==========================================
+       CART SLIDE-OVER DRAWER
+       ========================================== -->
+  <div class="drawer-overlay" id="cartDrawerOverlay">
+    <div class="drawer-content">
+      <div class="drawer-header">
+        <h3><i class="fa-solid fa-cart-shopping text-primary"></i> ตะกร้าสินค้าของคุณ (<span id="drawerCartCount">0</span>)</h3>
+        <button class="drawer-close-btn" id="closeCartDrawerBtn" aria-label="ปิดตะกร้า">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="drawer-body">
+        <!-- Cart Items List -->
+        <div class="cart-items-list" id="cartItemsList">
+          <!-- Rendered by JS -->
+        </div>
+
+        <!-- Coupon Code Applicator -->
+        <div class="coupon-box" style="margin-top: 1.25rem;">
+          <div style="font-size: 0.82rem; font-weight: 600; margin-bottom: 0.4rem;"><i class="fa-solid fa-ticket text-primary"></i> ใช้โค้ดส่วนลด</div>
+          <div class="coupon-input-wrap">
+            <input type="text" id="couponInput" class="coupon-input" placeholder="พิมพ์โค้ดส่วนลด...">
+            <button class="coupon-btn" id="applyCouponBtn">ใช้โค้ด</button>
+          </div>
+          <div class="coupon-tags">
+            <span class="coupon-tag" data-code="WELCOME10">WELCOME10 (-10%)</span>
+            <span class="coupon-tag" data-code="FREESHIP">FREESHIP (ส่งฟรี)</span>
+            <span class="coupon-tag" data-code="SUPER50">SUPER50 (-50บ.)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Drawer Footer & Price Summary -->
+      <div class="drawer-footer">
+        <div class="price-summary-row">
+          <span>ยอดรวมสินค้า</span>
+          <span id="cartSubtotalText">฿0</span>
+        </div>
+        <div class="price-summary-row" id="couponDiscountRow" style="display: none;">
+          <span>ส่วนลดโค้ดโปรโมชั่น</span>
+          <span class="text-success" id="cartDiscountText">-฿0</span>
+        </div>
+        <div class="price-summary-row">
+          <span>ค่าจัดส่ง</span>
+          <span id="cartShippingText">฿50</span>
+        </div>
+        <div class="price-summary-row total">
+          <span>ยอดชำระสุทธิ</span>
+          <span class="total-amount" id="cartGrandTotalText">฿0</span>
+        </div>
+        <button class="checkout-btn" id="proceedCheckoutBtn">
+          <span>ดำเนินการสั่งซื้อ</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       WISHLIST DRAWER
+       ========================================== -->
+  <div class="drawer-overlay" id="wishlistDrawerOverlay">
+    <div class="drawer-content">
+      <div class="drawer-header">
+        <h3><i class="fa-solid fa-heart text-danger"></i> รายการที่ถูกใจ (<span id="drawerWishlistCount">0</span>)</h3>
+        <button class="drawer-close-btn" id="closeWishlistDrawerBtn" aria-label="ปิด">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="drawer-body">
+        <div class="cart-items-list" id="wishlistItemsList">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       ORDER HISTORY DRAWER
+       ========================================== -->
+  <div class="drawer-overlay" id="ordersDrawerOverlay">
+    <div class="drawer-content" style="max-width: 480px;">
+      <div class="drawer-header">
+        <h3><i class="fa-solid fa-receipt text-primary"></i> ประวัติคำสั่งซื้อของคุณ</h3>
+        <button class="drawer-close-btn" id="closeOrdersDrawerBtn" aria-label="ปิด">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="drawer-body">
+        <div id="ordersListContainer">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       PRODUCT QUICK VIEW MODAL
+       ========================================== -->
+  <div class="modal-backdrop" id="quickViewModal">
+    <div class="modal-box" style="max-width: 780px;">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-eye text-primary"></i> รายละเอียดสินค้า</h3>
+        <button class="drawer-close-btn" id="closeQuickViewBtn" aria-label="ปิด">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="modal-body" id="quickViewModalBody">
+        <!-- Rendered dynamically by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       SELLER HUB MODAL (ลงขายสินค้าใหม่)
+       ========================================== -->
+  <div class="modal-backdrop" id="sellerModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-store text-primary"></i> ศูนย์ผู้ขาย: ลงขายสินค้าใหม่</h3>
+        <button class="drawer-close-btn" id="closeSellerModalBtn" aria-label="ปิด">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="sellerForm">
+          <div class="form-group">
+            <label class="form-label" for="sellerProductName">ชื่อสินค้า <span style="color: #ef4444;">*</span></label>
+            <input type="text" id="sellerProductName" class="form-input" placeholder="เช่น หูฟังไร้สาย Bluetooth 5.3..." required>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="sellerCategory">หมวดหมู่สินค้า <span style="color: #ef4444;">*</span></label>
+              <select id="sellerCategory" class="form-select" required>
+                <option value="tech">อุปกรณ์ไอที & มือถือ</option>
+                <option value="fashion">แฟชั่น & เสื้อผ้า</option>
+                <option value="food">อาหาร & ขนมของฝาก</option>
+                <option value="home">ของใช้ในบ้าน</option>
+                <option value="beauty">ความงาม & สุขภาพ</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="sellerShopName">ชื่อร้านค้าของคุณ <span style="color: #ef4444;">*</span></label>
+              <input type="text" id="sellerShopName" class="form-input" placeholder="เช่น My Shop Official" value="ร้านค้าของคุณ (My Store)" required>
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="sellerPrice">ราคาขาย (บาท) <span style="color: #ef4444;">*</span></label>
+              <input type="number" id="sellerPrice" class="form-input" placeholder="เช่น 450" min="1" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="sellerOriginalPrice">ราคาเต็มก่อนลด (บาท)</label>
+              <input type="number" id="sellerOriginalPrice" class="form-input" placeholder="เช่น 690 (เว้นว่างได้)">
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="sellerStock">จำนวนสต็อกสินค้า</label>
+              <input type="number" id="sellerStock" class="form-input" placeholder="50" value="50" min="1">
+            </div>
+
+            <div class="form-group" style="display: flex; align-items: flex-end; padding-bottom: 0.6rem;">
+              <label class="custom-checkbox-label">
+                <input type="checkbox" id="sellerFreeShipping" checked>
+                <span>จัดส่งฟรี</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Image Option -->
+          <div class="form-group">
+            <label class="form-label">เลือกรูปภาพสินค้า (หรือใส่ URL)</label>
+            <input type="url" id="sellerImageUrl" class="form-input" placeholder="https://images.unsplash.com/...">
+            <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.4rem;">หรือคลิกเลือกภาพตัวอย่างสำเร็จรูป:</div>
+            <div class="preset-images-grid" id="presetImagesGrid">
+              <!-- Preset thumbs -->
+              <div class="preset-img-choice selected" data-src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=800&q=80">
+                <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=200&q=80" alt="Watch">
+              </div>
+              <div class="preset-img-choice" data-src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80">
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=200&q=80" alt="Shoes">
+              </div>
+              <div class="preset-img-choice" data-src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=800&q=80">
+                <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=200&q=80" alt="Headphone">
+              </div>
+              <div class="preset-img-choice" data-src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=800&q=80">
+                <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=200&q=80" alt="Skincare">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="sellerDesc">รายละเอียดสินค้า</label>
+            <textarea id="sellerDesc" class="form-textarea" rows="3" placeholder="อธิบายคุณสมบัติ จุดเด่น และวิธีการใช้งานสินค้า..."></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; padding: 0.85rem;">
+            <i class="fa-solid fa-cloud-arrow-up"></i> บันทึกและวางขายสินค้าทันที
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       CHECKOUT MODAL (PROMPTPAY QR / CARD / COD)
+       ========================================== -->
+  <div class="modal-backdrop" id="checkoutModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-credit-card text-primary"></i> เช็คเอาท์และชำระเงิน</h3>
+        <button class="drawer-close-btn" id="closeCheckoutBtn" aria-label="ปิด">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="checkoutForm">
+          
+          <!-- Customer Address -->
+          <div style="font-weight: 700; font-size: 0.95rem; margin-bottom: 0.75rem;"><i class="fa-solid fa-location-dot text-primary"></i> 1. ที่อยู่สำหรับจัดส่ง</div>
+          
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="custName">ชื่อ-นามสกุล ผู้รับ <span style="color: #ef4444;">*</span></label>
+              <input type="text" id="custName" class="form-input" placeholder="สมชาย ใจดี" required value="สมชาย ใจดี">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="custPhone">เบอร์โทรศัพท์ <span style="color: #ef4444;">*</span></label>
+              <input type="tel" id="custPhone" class="form-input" placeholder="081-234-5678" required value="089-123-4567">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="custAddress">ที่อยู่จัดส่งละเอียด <span style="color: #ef4444;">*</span></label>
+            <input type="text" id="custAddress" class="form-input" placeholder="บ้านเลขที่, ถนน, ตำบล, อำเภอ, จังหวัด, รหัสไปรษณีย์" required value="99/1 ถ.สุขุมวิท แขวงคลองเตย เขตคลองเตย กรุงเทพฯ 10110">
+          </div>
+
+          <!-- Payment Method Selector -->
+          <div style="font-weight: 700; font-size: 0.95rem; margin: 1.25rem 0 0.75rem;"><i class="fa-solid fa-wallet text-primary"></i> 2. เลือกช่องทางชำระเงิน</div>
+          
+          <div class="payment-tabs">
+            <div class="payment-tab-btn active" data-method="promptpay">
+              <i class="fa-solid fa-qrcode"></i>
+              <span>PromptPay QR</span>
+            </div>
+            <div class="payment-tab-btn" data-method="creditcard">
+              <i class="fa-solid fa-credit-card"></i>
+              <span>บัตรเครดิต/เดบิต</span>
+            </div>
+            <div class="payment-tab-btn" data-method="cod">
+              <i class="fa-solid fa-hand-holding-dollar"></i>
+              <span>เก็บเงินปลายทาง</span>
+            </div>
+          </div>
+
+          <!-- PromptPay QR Container -->
+          <div id="paymentContentPromptPay">
+            <div class="promptpay-box">
+              <div class="promptpay-logo">PromptPay พร้อมเพย์</div>
+              <!-- Generated QR Canvas / Image -->
+              <div class="qr-code-img">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=SiamMarket-Mock-Payment-Order-2026" alt="PromptPay QR Code">
+              </div>
+              <div style="font-size: 0.9rem; margin-bottom: 0.35rem;">สแกนเพื่อชำระยอด: <b style="font-size: 1.2rem; color: #fde047;" id="qrTotalText">฿0</b></div>
+              <div class="qr-timer">QR ใช้งานได้ภายใน <span id="qrCountdown">09:59</span> นาที</div>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); text-align: center; margin-bottom: 1rem;">
+              *ระบบจะทำการตรวจสอบยอดเงินอัตโนมัติทันทีหลังสแกน
+            </p>
+          </div>
+
+          <!-- Credit Card Container -->
+          <div id="paymentContentCard" style="display: none; background: var(--bg-card-subtle); padding: 1.25rem; border-radius: var(--radius-lg); margin-bottom: 1.25rem;">
+            <div class="form-group">
+              <label class="form-label">หมายเลขบัตรเครดิต</label>
+              <input type="text" class="form-input" placeholder="4111 2222 3333 4444" maxlength="19">
+            </div>
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">วันหมดอายุ (MM/YY)</label>
+                <input type="text" class="form-input" placeholder="12/28" maxlength="5">
+              </div>
+              <div class="form-group">
+                <label class="form-label">รหัส CVV</label>
+                <input type="password" class="form-input" placeholder="123" maxlength="3">
+              </div>
+            </div>
+          </div>
+
+          <!-- COD Container -->
+          <div id="paymentContentCOD" style="display: none; background: var(--bg-card-subtle); padding: 1.25rem; border-radius: var(--radius-lg); margin-bottom: 1.25rem; text-align: center;">
+            <i class="fa-solid fa-truck-ramp-box" style="font-size: 2rem; color: var(--primary); margin-bottom: 0.5rem;"></i>
+            <p style="font-size: 0.9rem; font-weight: 600;">ชำระเงินสดกับพนักงานจัดส่งเมื่อได้รับสินค้า</p>
+            <p style="font-size: 0.8rem; color: var(--text-muted);">เตรียมเงินสดให้พอดีกับยอดชำระสุทธิ</p>
+          </div>
+
+          <!-- Summary and Submit -->
+          <div style="background: var(--bg-card-subtle); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 1.25rem;">
+            <div class="price-summary-row total" style="margin-top: 0; padding-top: 0; border: none;">
+              <span>ยอดชำระทั้งหมด:</span>
+              <span class="total-amount" id="checkoutFinalTotal">฿0</span>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; padding: 0.9rem; font-size: 1.05rem;">
+            <i class="fa-solid fa-lock"></i> ยืนยันการสั่งซื้อและชำระเงิน
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       ORDER SUCCESS & TRACKING MODAL
+       ========================================== -->
+  <div class="modal-backdrop" id="orderSuccessModal">
+    <div class="modal-box" style="max-width: 500px;">
+      <div class="modal-body order-success-body">
+        <div class="success-icon-circle">
+          <i class="fa-solid fa-check"></i>
+        </div>
+        <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem;">การสั่งซื้อเสร็จสมบูรณ์!</h2>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">ขอบคุณที่ช้อปปิ้งกับเรา ร้านค้าได้รับคำสั่งซื้อและกำลังเตรียมการจัดส่ง</p>
+        
+        <div class="order-code-badge" id="successOrderCodeBadge">
+          ORD-2026-XXXXX
+        </div>
+
+        <div style="background: var(--bg-card-subtle); border-radius: var(--radius-md); padding: 1rem; text-align: left; font-size: 0.88rem; margin-bottom: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+            <span style="color: var(--text-muted);">ผู้รับ:</span>
+            <b id="successCustName">สมชาย ใจดี</b>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+            <span style="color: var(--text-muted);">รหัสพัสดุ (Tracking):</span>
+            <b style="color: #10b981;" id="successTrackingCode">TH-EXP-998811</b>
+          </div>
+          <div style="display: flex; justify-content: space-between;">
+            <span style="color: var(--text-muted);">ประมาณการจัดส่ง:</span>
+            <b>ภายใน 1-2 วันทำการ</b>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 0.75rem;">
+          <button class="btn-secondary" id="successContinueShoppingBtn" style="flex: 1; justify-content: center; color: var(--text-main); border-color: var(--border-color); background: var(--bg-card-subtle);">
+            ช้อปปิ้งต่อ
+          </button>
+          <button class="btn-primary" id="successViewOrdersBtn" style="flex: 1; justify-content: center;">
+            <i class="fa-solid fa-receipt"></i> ดูสถานะพัสดุ
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       USER PROFILE MODAL
+       ========================================== -->
+  <div class="modal-backdrop" id="userProfileModal">
+    <div class="modal-box" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-user-circle text-primary"></i> โปรไฟล์ของฉัน</h3>
+        <button class="drawer-close-btn" id="closeUserProfileBtn" aria-label="ปิด">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- User info card -->
+        <div class="user-profile-card" id="userProfileCardContent">
+          <div class="user-profile-avatar" id="userProfileAvatar">?</div>
+          <div class="user-profile-info">
+            <h3 id="userProfileName">—</h3>
+            <div class="user-profile-role-badge" id="userProfileRoleBadge">
+              <i class="fa-solid fa-user-graduate"></i> <span id="userProfileRoleText">นักเรียน</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="user-profile-details" id="userProfileDetails">
+          <div class="user-profile-detail-row">
+            <i class="fa-solid fa-id-badge"></i>
+            <div>
+              <span class="detail-label">รหัสประจำตัว</span>
+              <span class="detail-value" id="userProfileUsername">—</span>
+            </div>
+          </div>
+          <div class="user-profile-detail-row">
+            <i class="fa-solid fa-school"></i>
+            <div>
+              <span class="detail-label">แผนก</span>
+              <span class="detail-value" id="userProfileDept">—</span>
+            </div>
+          </div>
+          <div class="user-profile-detail-row">
+            <i class="fa-solid fa-phone"></i>
+            <div>
+              <span class="detail-label">เบอร์โทร</span>
+              <span class="detail-value" id="userProfilePhone">—</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="user-profile-stats">
+          <div class="up-stat">
+            <span class="up-stat-num" id="profileOrderCount">0</span>
+            <span class="up-stat-label">คำสั่งซื้อ</span>
+          </div>
+          <div class="up-stat-div"></div>
+          <div class="up-stat">
+            <span class="up-stat-num" id="profileWishlistCount">0</span>
+            <span class="up-stat-label">รายการโปรด</span>
+          </div>
+          <div class="up-stat-div"></div>
+          <div class="up-stat">
+            <span class="up-stat-num" id="profileCartCount">0</span>
+            <span class="up-stat-label">ในตะกร้า</span>
+          </div>
+        </div>
+
+        <button class="logout-btn" id="logoutBtn">
+          <i class="fa-solid fa-right-from-bracket"></i> ออกจากระบบ
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       TOAST NOTIFICATION CONTAINER
+       ========================================== -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ==========================================
+       FOOTER
+       ========================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="index.html" class="logo" style="margin-bottom: 1rem; display: inline-flex;">
+            <div class="logo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            <div>College<span>Market</span></div>
+          </a>
+          <p style="font-size: 0.88rem; line-height: 1.6; margin-bottom: 1rem;">
+            ตลาดออนไลน์ภายในวิทยาลัย เชื่อมต่อนักเรียนและบุคลากร ซื้อขายได้อย่างปลอดภัยและโปร่งใส
+          </p>
+          <div class="social-links">
+            <a href="javascript:void(0)" class="social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="javascript:void(0)" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="javascript:void(0)" class="social-btn" aria-label="Line"><i class="fa-brands fa-line"></i></a>
+            <a href="javascript:void(0)" class="social-btn" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>หมวดหมู่สินค้ายอดนิยม</h4>
+          <ul class="footer-links">
+            <li><a href="javascript:void(0)" data-category-link="tech">อุปกรณ์ไอที & สมาร์ทโฟน</a></li>
+            <li><a href="javascript:void(0)" data-category-link="fashion">แฟชั่น & เสื้อผ้าสตรีทแวร์</a></li>
+            <li><a href="javascript:void(0)" data-category-link="food">ของกิน & ขนมของฝาก</a></li>
+            <li><a href="javascript:void(0)" data-category-link="home">ของตกแต่งบ้าน & เครื่องใช้ไฟฟ้า</a></li>
+            <li><a href="javascript:void(0)" data-category-link="beauty">สกินแคร์ & ผลิตภัณฑ์ดูแลผิว</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>บริการลูกค้า</h4>
+          <ul class="footer-links">
+            <li><a href="javascript:void(0)">ศูนย์ช่วยเหลือ & คำถามที่พบบ่อย</a></li>
+            <li><a href="javascript:void(0)">นโยบายการจัดส่งสินค้า</a></li>
+            <li><a href="javascript:void(0)">การคืนสินค้าและการคืนเงิน</a></li>
+            <li><a href="javascript:void(0)">เงื่อนไขและข้อตกลงการใช้บริการ</a></li>
+            <li><a href="javascript:void(0)">ติดต่อเรา 24 ชม.</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>ช่องทางการชำระเงินที่รองรับ</h4>
+          <p style="font-size: 0.85rem; margin-bottom: 0.75rem;">รองรับการชำระเงินทุกรูปแบบ ปลอดภัยด้วยระบบเข้ารหัส SSL มาตรฐานสากล</p>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; font-size: 1.4rem; color: var(--text-muted);">
+            <i class="fa-solid fa-qrcode" title="PromptPay QR"></i>
+            <i class="fa-brands fa-cc-visa" title="Visa"></i>
+            <i class="fa-brands fa-cc-mastercard" title="Mastercard"></i>
+            <i class="fa-brands fa-cc-jcb" title="JCB"></i>
+            <i class="fa-solid fa-money-bill-wave" title="เก็บเงินปลายทาง"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 College Market · ตลาดออนไลน์ภายในวิทยาลัย</div>
+        <div>Made with ❤️ สำหรับนักเรียนและบุคลากรวิทยาลัย</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <!-- Auth Guard — must be inline to block before render -->
+  <script>
+    (function() {
+      const AUTH_KEY = 'college_market_auth_v1';
+      const USERS_KEY = 'college_market_users_v1';
+      try {
+        const session = JSON.parse(localStorage.getItem(AUTH_KEY));
+        if (!session || !session.username) {
+          window.location.replace('login.html');
+        }
+      } catch(e) {
+        window.location.replace('login.html');
+      }
+    })();
+  </script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/auth-ui.js"></script>
+</body>
+</html>
